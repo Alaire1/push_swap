@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: akaraban <akaraban@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/15 00:39:15 by akaraban          #+#    #+#             */
-/*   Updated: 2023/04/19 00:05:59 by akaraban         ###   ########.fr       */
+/*   Created: 2023/04/20 21:58:09 by akaraban          #+#    #+#             */
+/*   Updated: 2023/04/20 21:58:13 by akaraban         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,10 @@ static int	duplicate_val(int count, char **input)
 		while (j < count)
 		{
 			if (!ft_strcmp(cur_num, input[j]))
+			{
+				free(cur_num);
 				return (TRUE);
+			}
 			j++;
 		}
 		free(cur_num);
@@ -58,36 +61,42 @@ static int	out_of_range(char *num)
 	return (FALSE);
 }
 
-void	display_error(void)
-{
-	int		fd;
-	char	*error_message;
-
-	fd = 1;
-	error_message = "Error";
-	ft_putendl_fd(error_message, fd);
-}
-
-int	error_check(int count, char **strs)
+static int	making_checks(int c, char **s)
 {
 	int	i;
 
 	i = 1;
-	if (count < 2)
-		return (-1);
-	if (duplicate_val(count, strs))
+	if (duplicate_val(c, s))
+		return (1);
+	while (i < c)
 	{
-		display_error();
-		return (TRUE);
-	}
-	while (i < count)
-	{
-		if (!ft_isnum(strs[i]) || out_of_range(strs[i]))
-		{
-			display_error();
-			return (TRUE);
-		}
+		if (!ft_isnum(s[i]) || out_of_range(s[i]))
+			return (1);
 		i++;
 	}
-	return (FALSE);
+	return (0);
+}
+
+int	error_check(int count, char **strs)
+{
+	int		mac_case;
+	char	*str;
+	int		mark;
+
+	mac_case = 0;
+	mark = 0;
+	if (count < 2)
+		return (-1);
+	if (ft_isspace(strs[1]) && count == 2)
+	{
+		str = ft_strcat_spc(strs[0], strs[1]);
+		strs = ft_split(str, ' ');
+		count = word_count(str, ' ');
+		mark = 1;
+	}
+	if (making_checks(count, strs))
+		mac_case = 1;
+	if (mark)
+		ft_free(strs);
+	return (mac_case);
 }
