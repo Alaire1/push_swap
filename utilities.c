@@ -6,7 +6,7 @@
 /*   By: akaraban <akaraban@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 00:40:14 by akaraban          #+#    #+#             */
-/*   Updated: 2023/04/15 01:29:54 by akaraban         ###   ########.fr       */
+/*   Updated: 2023/04/23 01:44:11 by akaraban         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,10 @@ long	ft_atoi(char *nptr)
 	i = 0;
 	result = 0;
 	sign = 1;
-	if (nptr[i] == '-')
+	if (nptr[i] == '-' || nptr[i] == '+')
 	{
-		sign = -1;
+		if (nptr[i] == '-')
+			sign = -1;
 		i++;
 	}
 	while (ft_isdigit(nptr[i]))
@@ -71,16 +72,4 @@ char	*ft_strdup(char *s)
 	}
 	ptr[i] = '\0';
 	return (ptr);
-}
-
-int	ft_strcmp(char *s1, char *s2)
-{
-	int	pos;
-
-	pos = 0;
-	while (s1[pos] != 0 && s2[pos] != 0 && s1[pos] == s2[pos])
-	{
-		pos = pos + 1;
-	}
-	return (s1[pos] - s2[pos]);
 }

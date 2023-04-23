@@ -6,7 +6,7 @@
 #    By: akaraban <akaraban@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/15 23:53:30 by akaraban          #+#    #+#              #
-#    Updated: 2023/04/18 23:48:18 by akaraban         ###   ########.fr        #
+#    Updated: 2023/04/23 01:53:51 by akaraban         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,7 @@ GREEN = \033[0;32m
 RESET = \033[0m
 
 .c.o :
-	@$(CC) $(CFLAGS) -c $< -o $(<:.c=.o)
+	@$(CC) $(CFLAGS) -c  $< -o $(<:.c=.o)
 		
 $(NAME): $(OBJECTS) 
 	@$(CC) $(CFLAGS) $(OBJECTS) -o $(NAME)

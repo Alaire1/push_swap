@@ -6,7 +6,7 @@
 /*   By: akaraban <akaraban@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 21:58:57 by akaraban          #+#    #+#             */
-/*   Updated: 2023/04/20 21:59:01 by akaraban         ###   ########.fr       */
+/*   Updated: 2023/04/23 01:41:33 by akaraban         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,6 @@ int		ft_isdigit(int c);
 long	ft_atoi(char *nptr);
 size_t	ft_strlen(const char *s);
 char	*ft_strdup(char *s);
-int		ft_strcmp(char *s1, char *s2);
 
 //utilities2.c
 void	ft_putchar_fd(char c, int fd);
